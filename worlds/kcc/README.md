@@ -94,10 +94,6 @@ If you went and used the launcher to make your yaml file for testing and it simp
 
 Excellent question! Im not gonna lie, theres a lot of irrelevant information in error messages sometimes so learning how to figure out whats important and whats not is a skill that takes time to learn. The main things you'll want to look for is anything that has your file name in it. Here's an example from when I was debugging this test world so that it would generate yamls and actual make a world. Ignore the fact that it is talking about Sly1 I just borrowed that archipelago install for testing.
 
-![Image](https://github.com/user-attachments/assets/2ac37a63-9d72-45fe-bec5-0bbe2f596071)
-
-Now this is confusing and has a lot of scary purple but what does it actually mean. The first thing I do is I look at those files. The first 6 are all errors that are in files that are in the base `worlds` folder of archipelago. Now I know that I didnt touch any of those files so they shouldnt be the ones that are broken. The 7th though reveals the real issue. In my `__init__.py` I tried to get the name of the starting chapter like this `starting_chapter = chapter_type_to_name(ChapterType(self.options.StartingChapter))`. The issue is that thats not how enums work. I actually needed to use square brackets `starting_chapter = chapter_type_to_name[ChapterType(self.options.StartingChapter)]`. Its a super tiny difference but one works and one crashes. 
-
 In a couple of different spots in the init.py and Items.py youll see some commented out print statements. Those are also left over from my own debugging process. I like to spam print statements all throughout my code where things are breaking so I can see exactly how far things are going and what certain variables may look like. Its really nice to add large swaths of hyphens or a bunch of emojis so that its easy to see when your scrolling through the logs (logs being what comes out when you run the terminal code). Abuse them. Spam them as much as you want no one can stop you.
 
 ## Ok so I found my error but I have no clue how to fix it

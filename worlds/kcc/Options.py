@@ -36,26 +36,15 @@ class LosePowerupTrapWeight(Range):
     range_end = 100
     default = 0
 
-class SpeedChangeTrapWeight(Range):
-    """
-    The weight of speed change traps in the trap pool.
-    Speed change traps change the game speed for x seconds.
-    """
-    display_name = "Speed Change Trap Weight"
-    range_start = 0
-    range_end = 100
-    default = 25
-
 @dataclass
 class WorldOptions(PerGameCommonOptions):
 
     
     TrapChance:                 TrapChance
-    SpeedChangeTrapWeight:      SpeedChangeTrapWeight
     LosePowerup: LosePowerupTrapWeight
 
 # This is where you organize your options
 # Its entirely up to you how you want to organize it
 ap_skeleton_option_groups: Dict[str, List[Any]] = {
-    "Trap Options": [TrapChance, SpeedChangeTrapWeight, LosePowerupTrapWeight]
+    "Trap Options": [TrapChance, LosePowerupTrapWeight]
 }

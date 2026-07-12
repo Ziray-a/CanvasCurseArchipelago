@@ -15,11 +15,19 @@ def set_rules(world: "CanvasCurseWorld"):
     player = world.player
     options = world.options
 
-    # Chapter Access
-    add_rule(world.multiworld.get_entrance("Menu -> Green Hill Zone", player),
-             lambda state: state.has("Green Hill Zone", player))
+    add_rule(world.multiworld.get_entrance("World 2", player),
+             lambda state: state.has("Progressive World Unlock", player, 1))
+    add_rule(world.multiworld.get_entrance("World 3", player),
+             lambda state: state.has("Progressive World Unlock", player, 2))
+    add_rule(world.multiworld.get_entrance("World 4", player),
+             lambda state: state.has("Progressive World Unlock", player, 3))
+    add_rule(world.multiworld.get_entrance("World 5", player),
+             lambda state: state.has("Progressive World Unlock", player, 4))
+    add_rule(world.multiworld.get_entrance("World 6", player),
+             lambda state: state.has("Progressive World Unlock", player, 5))
+    add_rule(world.multiworld.get_entrance("World 7", player),
+             lambda state: state.has("Progressive World Unlock", player, 6))
+    add_rule(world.multiworld.get_entrance("World 8", player),
+             lambda state: state.has("Progressive World Unlock", player, 7))
+    
 
-    
-    
-    # Victory condition rule!
-    world.multiworld.completion_condition[player] = lambda state: state.has("Beat Drawcia", player)

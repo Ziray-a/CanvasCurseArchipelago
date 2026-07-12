@@ -1,80 +1,72 @@
 from BaseClasses import Region
-from .Types import APSkeletonLocation
+from .Types import CanvasCurseLocation
 from .Locations import locationTable, is_valid_location
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from . import CanvasCurseWorld
 
-# This is where you will create your imaginary game world
-# IE: connect rooms and areas together
-# This is NOT where you'll add requirements for how to get to certain locations thats in Rules.py
-# This is also long and tediouos
-def createRegions(world: "CanvasCurseWorld"):
-    # The functions that are being used here will be located at the bottom to view
-    # The important part is that if its not a dead end and connects to another place then name it
-    # Otherwise you can just create the connection. Not that naming it is bad
 
-    # You can technically name your connections whatever you want as well
-    # You'll use those connection names in Rules.py
-    world1 = createRegion(world,"Reddy Land - Kirby")
-    world2 = createRegion(world,"Arange Gorge - Kirby")
-    world3 = createRegion(world,"Iello Adventure - Kirby")
-    world4 = createRegion(world,"Neo Greo - Kirby")
-    world5 = createRegion(world,"Bloo Hills - Kirby")
-    world6 = createRegion(world,"Omarine Zone - Kirby")
-    world7 = createRegion(world,"Wonder Lilane - Kirby")
-    world8 = createRegion(world,"The World of Drawcia - Kirby")
-
-    PlantPlain = createRegionAndConnect(world,"Plant Plain", world1)
-    TinyTown = createRegionAndConnect(world,"Tiny Town", world1)
-    RavineRoad = createRegionAndConnect(world,"Ravine Road")
+def create_regions(world: "CanvasCurseWorld"):
 
 
-    GhostGrounds = createRegionAndConnect(world, "Ghost Grounds", world2)
-    GrowthGrasses = createRegionAndConnect(world, "Growth Grasses", world2)
-    MagMount = createRegionAndConnect(world, "Mag Mount", world2)
+    menu = createRegion(world, "Menu")
+    world1 = createRegionAndConnect(world,"Reddy Land - Kirby","Menu Select",menu)
+    world2 = createRegionAndConnect(world,"Arange Gorge - Kirby","Menu Select", world1)
+    world3 = createRegionAndConnect(world,"Iello Adventure - Kirby","Menu Select",world2)
+    world4 = createRegionAndConnect(world,"Neo Greo - Kirby","Menu Select",world3)
+    world5 = createRegionAndConnect(world,"Bloo Hills - Kirby","Menu Select",world4)
+    world6 = createRegionAndConnect(world,"Omarine Zone - Kirby","Menu Select",world5)
+    world7 = createRegionAndConnect(world,"Wonder Lilane - Kirby","Menu Select",world6)
+    world8 = createRegionAndConnect(world,"The World of Drawcia - Kirby","Menu Select",world7)
 
-    RiftRuin = createRegionAndConnect(world, "Rift Ruin", world3)
-    ContrastCave = createRegionAndConnect(world, "Contrast Cave", world3)
-    SilverSubmarine = createRegionAndConnect(world, "Silver Submarine", world3)
+    PlantPlain = createRegionAndConnect(world,"Plant Plain", "World 1", world1)
+    TinyTown = createRegionAndConnect(world,"Tiny Town","World 1", world1)
+    RavineRoad = createRegionAndConnect(world,"Ravine Road","World 1", world1)
 
-    MachineMansion = createRegionAndConnect(world, "Machine Mansion", world4)
-    DreamyDarkness = createRegionAndConnect(world, "Dreamy Darkness", world4)
-    PalettoPolis = createRegionAndConnect(world, "Paletto Polis", world4)
 
-    ColdCourse = createRegionAndConnect(world, "Cold Course", world5)
-    DungeonDome = createRegionAndConnect(world, "Dungeon Dome", world5)
-    CanvasCanyon = createRegionAndConnect(world, "Canvas Canyon", world5)
+    GhostGrounds = createRegionAndConnect(world, "Ghost Grounds","World 2", world2)
+    GrowthGrasses = createRegionAndConnect(world, "Growth Grasses","World 2", world2)
+    MagMount = createRegionAndConnect(world, "Mag Mount","World 2", world2)
 
-    CollapseCastle = createRegionAndConnect(world, "Collapse Castle", world6)
-    VolatileVolcano = createRegionAndConnect(world, "Volatile Volcano", world6)
-    SilentSeabed = createRegionAndConnect(world, "Silent Seabed", world6)
+    RiftRuin = createRegionAndConnect(world, "Rift Ruin","World 3", world3)
+    ContrastCave = createRegionAndConnect(world, "Contrast Cave","World 3", world3)
+    SilverSubmarine = createRegionAndConnect(world, "Silver Submarine","World 3", world3)
 
-    FrozenFantasy = createRegionAndConnect(world, "Frozen Fantasy", world7)
-    MadMechanism = createRegionAndConnect(world, "Mad Mechanism", world7)
-    SpectacleSpace = createRegionAndConnect(world, "Spectacle Space", world7)
+    MachineMansion = createRegionAndConnect(world, "Machine Mansion","World 4", world4)
+    DreamyDarkness = createRegionAndConnect(world, "Dreamy Darkness","World 4", world4)
+    PalettoPolis = createRegionAndConnect(world, "Paletto Polis","World 4", world4)
 
-    TheWorldOfDrawcia = createRegionAndConnect(world, "The World of Drawcia", world8)
+    ColdCourse = createRegionAndConnect(world, "Cold Course","World 5", world5)
+    DungeonDome = createRegionAndConnect(world, "Dungeon Dome","World 5", world5)
+    CanvasCanyon = createRegionAndConnect(world, "Canvas Canyon","World 5", world5)
+
+    CollapseCastle = createRegionAndConnect(world, "Collapse Castle","World 6", world6)
+    VolatileVolcano = createRegionAndConnect(world, "Volatile Volcano","World 6", world6)
+    SilentSeabed = createRegionAndConnect(world, "Silent Seabed","World 6", world6)
+
+    FrozenFantasy = createRegionAndConnect(world, "Frozen Fantasy","World 7", world7)
+    MadMechanism = createRegionAndConnect(world, "Mad Mechanism","World 7", world7)
+    SpectacleSpace = createRegionAndConnect(world, "Spectacle Space","World 7", world7)
+
+    TheWorldOfDrawcia = createRegionAndConnect(world, "The World of Drawcia","World 8", world8)
 
 
 def createRegion(world: "CanvasCurseWorld", name: str) -> Region:
     reg = Region(name, world.player, world.multiworld)
 
-    # When we create the region we go through all the locations we made and check if they are in that region
-    # If they are and are valid, we attach it to the region
+
     for (key, data) in locationTable.items():
         if data.region == name:
             if not is_valid_location(world, key):
                 continue
-            location = APSkeletonLocation(world.player, key, data.ap_code, reg)
+            location = CanvasCurseLocation(world.player, key, data.ap_code, reg)
             reg.locations.append(location)
     
     world.multiworld.regions.append(reg)
     return reg
 
-# This runs the create region function while also connecting to another region
-# Just simplifies process since you woill be connecting a lot of regions
+
 def createRegionAndConnect(world: "CanvasCurseWorld",
                                name: str, entrancename: str, connected_region: Region) -> Region:
     reg: Region = createRegion(world, name)

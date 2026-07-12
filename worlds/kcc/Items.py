@@ -13,7 +13,7 @@ from BaseClasses import Item, ItemClassification
 
 # These come from the other files in this example. If you want to see the source ctrl + click the name
 # You can also do that ctrl + click for any functions to see what they do
-from .Types import ItemData, ChapterType, APSkeletonItem, chapter_type_to_name
+from .Types import ItemData, CanvasCurseItem
 from .Locations import get_total_locations
 from typing import List, Dict, TYPE_CHECKING
 
@@ -33,47 +33,43 @@ def createItemPool(world: "CanvasCurseWorld") -> List[Item]:
     # I can point to Sly Cooper and the Thievious Raccoonus since I did that
 
     # This is a good place to grab anything you need from options
-
-    # For this example I'll make it so there is a starting chapter
-    # We loop through all the chapters in the my_chapter section
-    for chapter in ap_skeleton_chapters.keys():
-        # If the starting chapter equals the chapter we're looking at skip it
-        # We skip it since we dont want to add the chapter the player started with to the item pool
-        print("-------------------------")
-        print(starting_chapter)
-        print("-------------------------")
-        if starting_chapter == chapter:
-            continue
-        # Otherwise then we create an item with that name and add it to the item pool
-        else:
-            itempool.append(create_item(world, chapter))
+    
     
     # It's up to you and how you want things organized but I like to deal with victory here
     # This creates your win item and then places it at the "location" where you win
-    victory = create_item(world, "Victory")
-    world.multiworld.get_location("Beat Final Boss", world.player).place_locked_item(victory)
+    itempool += getMainItems(world)
 
     # Then junk items are made
     # Check out the create_junk_items function for more details
-    itempool += create_junk_items(world, get_total_locations(world) - len(itempool) - 1)
 
     return itempool
 
 # This is a generic function to create a singular item
-def create_item(world: "CanvasCurseWorld", name: str) -> Item:
+def create_item(world: "CanvasCurseWorld", name: str, ItemType: ItemClassification = ItemClassification.progression) -> Item:
     data = item_table[name]
-    return APSkeletonItem(name, data.classification, data.ap_code, world.player)
+    return CanvasCurseItem(name, data.classification, data.ap_code, world.player)
 
 # Another generic function. For creating a bunch of items at once!
 def create_multiple_items(world: "CanvasCurseWorld", name: str, count: int,
-                          item_type: ItemClassification = ItemClassification.progression) -> List[Item]:
+                          itemType: ItemClassification = ItemClassification.progression) -> List[Item]:
     data = item_table[name]
     itemlist: List[Item] = []
 
     for i in range(count):
-        itemlist += [APSkeletonItem(name, item_type, data.ap_code, world.player)]
+        itemlist += [CanvasCurseItem(name, itemType, data.ap_code, world.player)]
 
     return itemlist
+
+def getMainItems(world: "CanvasCurseWorld"):
+    MainItemPoolList = []
+    MainItemKeys = MainItems.keys()
+    for MainItem in MainItemKeys:
+        if MainItems[MainItem].count >1:
+            MainItemPoolList += create_multiple_items(world, MainItem, MainItems[MainItem].count, MainItems[MainItem].classification)
+        else:
+            MainItemPoolList +=create_item(world, MainItem, MainItems[MainItem].classification)
+    return MainItemPoolList
+
 
 
 # Time for the fun part of listing all of the items

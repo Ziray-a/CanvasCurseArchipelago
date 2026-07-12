@@ -7,11 +7,6 @@ from .Types import LocData
 if TYPE_CHECKING:
     from . import CanvasCurseWorld
 
-# This is technique in programming to make things more readable for booleans
-# A boolean is true or false
-def did_include_extra_locations(world: "CanvasCurseWorld") -> bool:
-    return bool(world.options.ExtraLocations)
-
 # This is used by ap and in Items.py
 # Theres a multitude of reasons to need to grab how many locations there are
 def get_total_locations(world: "CanvasCurseWorld") -> int:
@@ -21,9 +16,6 @@ def get_total_locations(world: "CanvasCurseWorld") -> int:
         # If we did not turn on extra locations (see how readable it is with that thing from the top)
         # AND the name of it is found in our extra locations table, then that means we dont want to count it
         # So continue moves onto the next name in the table
-        if not did_include_extra_locations(world) and name in extra_locations:
-            continue
-
         # If the location is valid though, count it
         if is_valid_location(world, name):
             total += 1
@@ -41,8 +33,6 @@ def get_location_names() -> Dict[str, int]:
 # I know it looks like the same as when we counted it but thats because this is an example
 # Things get complicated fast so having a back up is nice
 def is_valid_location(world: "CanvasCurseWorld", name) -> bool:
-    if not did_include_extra_locations(world) and name in extra_locations:
-        return False
     
     return True
 
@@ -149,10 +139,6 @@ MainStoryLocations = {
 }
 
 
-# Like in Items.py, breaking up the different locations to help with organization and if something special needs to happen to them
-EventLocations = {
-    "Beat Drawcia": LocData(66, "The World of Drawcia")
-}
 
 # Also like in Items.py, this collects all the dictionaries together
 # Its important to note that locations MUST be bigger than progressive item count and should be bigger than total item count
@@ -160,6 +146,4 @@ EventLocations = {
 # But important to note
 locationTable = {
     **MainStoryLocations,
-    **EventLocations
-    
 }

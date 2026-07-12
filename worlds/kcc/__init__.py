@@ -1,30 +1,19 @@
-# This is where your imports go. That means any functions or variables that you want to use here but exist in another file
-# What I have here is just some of the basic Archipelago classes that are widely used
-
-# A more indepth explanation of the types of imports
-# THE LINES FROM 7-12 ARE EXAMPLE IMPORTS AND NOT NECESSARILY REQUIRED
-
-# import random
-# With that import you are importing every single function, class, variable, whatever else that is allowed to be imported from random. Super useful and simple but somewhat bulky
-
-# from random import randrange
-# Here you are only grabbing the randrange function from random. This is less bulky but you need to put exactly what you want from that file/library
-# If you want more things from the import add a comma like the worlds.AutoWorld import below
-import logging
+import os
+import typing
+import zipfile as zip
 
 from BaseClasses import MultiWorld, Item, Tutorial
+import settings
 from worlds.AutoWorld import World, CollectionState, WebWorld
 from typing import Dict
-
-from .Locations import get_location_names, get_total_locations
+from .Client import KirbyCanvasCurseClient
+from .Patch import TinyPatch, write_tokens
+from .Locations import get_location_names
 from .Items import create_item, createItemPool, item_table
 from .Options import WorldOptions
-from .Regions import createRegions
-from .Types import ChapterType, chapter_type_to_name
+from .Regions import create_regions
 
-# This is where you setup the page on the site!
-# Typically is the name of your game with web
-# Whatever you named the folder you are holding all of this in
+
 class KirbyCanvasCurseWeb(WebWorld):
     
     
@@ -39,24 +28,31 @@ class KirbyCanvasCurseWeb(WebWorld):
         ["Ziraya)"]
     )]
 
-# This class is the real meat and potatoes
-# Same as the first class its normally named whatever you named your folder with World at the end
+
+
+
+class KCCSettings(settings.Group):
+    class RomFile(settings.UserFilePath):
+        copy_to = "Kirby_Canvas_Curse.nds"
+        description ="Canvas Curse ROM File"
+        md5s = ["1bf9f30c507a12dda0ec0a33daeeed0b"]
+
+    rom_file: RomFile = RomFile(RomFile.copy_to)
+    rom_start: bool = True
+
+
 class CanvasCurseWorld(World):
     """
-    This is where you describe your game. Pretend you are marketing the game and that people have no clue what it is.
-    Or make it silly. Whatever you wish I have no control over you.
+    A game about guiding a now fully ball-shaped Kirby along a rainbow trail.
     """
 
     game = "Kirby: Canvas Curse DS"
-    # The item_table will be setup in  your Items.py. This line gets all the items you put into item_table and puts it in a way that AP can understand it
     item_name_to_id = {name: data.ap_code for name, data in item_table.items()}
-    # get_location_names() will come from your Locations.py
     location_name_to_id = get_location_names()
-    # And these 2 are the name of your Options.py class. 
     options_dataclass = WorldOptions
     options = WorldOptions
-    # The name of the class above
     web = KirbyCanvasCurseWeb()
+    settings: typing.ClassVar[KCCSettings]
 
     # There are other built in variables for AP. You can look at other worlds to see your options
     # Like PLEASE look at the various worlds. Its so helpful. Find one you like and you can duplicate a bunch of it
@@ -71,7 +67,7 @@ class CanvasCurseWorld(World):
     # They dont have to match your game, they can be whatever you need them to be for organization
     def create_regions(self):
         # This function comes from your Regions.py and dont worry that it matches the function that its in
-        createRegions(self)
+        create_regions(self)
 
         # You can also use this space to do other location creation activities
         # Like if an option is enabled to add extra locations
@@ -96,9 +92,20 @@ class CanvasCurseWorld(World):
 
         return slot_data
     
+
+    def generate_output(self, output_directory: str) -> None:
+        try:
+            file_path = os.path.join(output_directory, f"{self.multiworld.get_out_file_name_base(self.player)}.apkcc")
+            patch = TinyPatch(player=self.player, player_name=self.multiworld.player_name[self.player])
+            write_tokens(patch)
+            patch.write(file_path)
+        except Exception:
+            raise
+    
     # These are used by AP to add and remove items from the player. You can probably just leave them alone
     def collect(self, state: "CollectionState", item: "Item") -> bool:
         return super().collect(state, item)
     
     def remove(self, state: "CollectionState", item: "Item") -> bool:
         return super().remove(state, item)
+
