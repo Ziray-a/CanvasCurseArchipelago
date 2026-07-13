@@ -12,6 +12,7 @@ from .Locations import get_location_names
 from .Items import create_item, createItemPool, item_table
 from .Options import WorldOptions
 from .Regions import create_regions
+from .Rules import set_rules
 
 
 class KirbyCanvasCurseWeb(WebWorld):
@@ -69,13 +70,7 @@ class CanvasCurseWorld(World):
         # This function comes from your Regions.py and dont worry that it matches the function that its in
         create_regions(self)
 
-        # You can also use this space to do other location creation activities
-        # Like if an option is enabled to add extra locations
-        # Or the opposite, whatever it is. Just be careful that you arent duplicating locations
 
-    # These are some examples of creating items. The create_itempool(self) function is coming from Items.py in this instance
-    # The important part is that the items get into the self.multiworld.itempool as a list of Items
-    # Ill try to explain better in the Items.py file 
     def create_items(self):
         self.multiworld.itempool += createItemPool(self)
 
@@ -85,13 +80,15 @@ class CanvasCurseWorld(World):
     def create_item(self, name: str) -> Item:
         return create_item(self, name)
     
-    # The slot data is what youre sending to the AP server kinda. You dont have to add all your options. Really you want the ones you think a pop tracker would use
-    # Seed, Slot, and TotalLocations are all super important for AP though, you need those
+
     def fill_slot_data(self) -> Dict[str, object]:
         slot_data: Dict[str, object] = {}
 
         return slot_data
     
+    def set_rules(self):
+        super().set_rules()
+        set_rules(self)
 
     def generate_output(self, output_directory: str) -> None:
         try:
@@ -108,4 +105,6 @@ class CanvasCurseWorld(World):
     
     def remove(self, state: "CollectionState", item: "Item") -> bool:
         return super().remove(state, item)
+    
+
 

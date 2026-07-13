@@ -12,44 +12,44 @@ def create_regions(world: "CanvasCurseWorld"):
 
     menu = createRegion(world, "Menu")
     world1 = createRegionAndConnect(world,"Reddy Land - Kirby","Menu Select",menu)
-    world2 = createRegionAndConnect(world,"Arange Gorge - Kirby","Menu Select", world1)
-    world3 = createRegionAndConnect(world,"Iello Adventure - Kirby","Menu Select",world2)
-    world4 = createRegionAndConnect(world,"Neo Greo - Kirby","Menu Select",world3)
-    world5 = createRegionAndConnect(world,"Bloo Hills - Kirby","Menu Select",world4)
-    world6 = createRegionAndConnect(world,"Omarine Zone - Kirby","Menu Select",world5)
-    world7 = createRegionAndConnect(world,"Wonder Lilane - Kirby","Menu Select",world6)
-    world8 = createRegionAndConnect(world,"The World of Drawcia - Kirby","Menu Select",world7)
+    world2 = createRegionAndConnect(world,"Arange Gorge - Kirby","World 2", world1)
+    world3 = createRegionAndConnect(world,"Iello Adventure - Kirby","World 3",world2)
+    world4 = createRegionAndConnect(world,"Neo Greo - Kirby","World 4",world3)
+    world5 = createRegionAndConnect(world,"Bloo Hills - Kirby","World 5",world4)
+    world6 = createRegionAndConnect(world,"Omarine Zone - Kirby","World 6",world5)
+    world7 = createRegionAndConnect(world,"Wonder Lilane - Kirby","World 7",world6)
+    world8 = createRegionAndConnect(world,"The World of Drawcia - Kirby","World 8",world7)
 
-    PlantPlain = createRegionAndConnect(world,"Plant Plain", "World 1", world1)
-    TinyTown = createRegionAndConnect(world,"Tiny Town","World 1", world1)
-    RavineRoad = createRegionAndConnect(world,"Ravine Road","World 1", world1)
+    PlantPlain = createRegionAndConnect(world,"Plant Plain", "World 1 - Stage 1", world1)
+    TinyTown = createRegionAndConnect(world,"Tiny Town","World 1 - Stage 2", world1)
+    RavineRoad = createRegionAndConnect(world,"Ravine Road","World 1 - Stage 3", world1)
 
 
-    GhostGrounds = createRegionAndConnect(world, "Ghost Grounds","World 2", world2)
-    GrowthGrasses = createRegionAndConnect(world, "Growth Grasses","World 2", world2)
-    MagMount = createRegionAndConnect(world, "Mag Mount","World 2", world2)
+    GhostGrounds = createRegionAndConnect(world, "Ghost Grounds","World 2 - Stage 1", world2)
+    GrowthGrasses = createRegionAndConnect(world, "Growth Grasses","World 2  - Stage 2", world2)
+    MagMount = createRegionAndConnect(world, "Mag Mount", "World 2 - Stage 3" , world2)
 
-    RiftRuin = createRegionAndConnect(world, "Rift Ruin","World 3", world3)
-    ContrastCave = createRegionAndConnect(world, "Contrast Cave","World 3", world3)
-    SilverSubmarine = createRegionAndConnect(world, "Silver Submarine","World 3", world3)
+    RiftRuin = createRegionAndConnect(world, "Rift Ruin","World 3 - Stage 1", world3)
+    ContrastCave = createRegionAndConnect(world, "Contrast Cave","World 3 - Stage 2", world3)
+    SilverSubmarine = createRegionAndConnect(world, "Silver Submarine","World 3 - Stage 3", world3)
 
-    MachineMansion = createRegionAndConnect(world, "Machine Mansion","World 4", world4)
-    DreamyDarkness = createRegionAndConnect(world, "Dreamy Darkness","World 4", world4)
-    PalettoPolis = createRegionAndConnect(world, "Paletto Polis","World 4", world4)
+    MachineMansion = createRegionAndConnect(world, "Machine Mansion","World 4 - Stage 1", world4)
+    DreamyDarkness = createRegionAndConnect(world, "Dreamy Darkness","World 4 - Stage 2", world4)
+    PalettoPolis = createRegionAndConnect(world, "Paletto Polis","World 4 - Stage 3", world4)
 
-    ColdCourse = createRegionAndConnect(world, "Cold Course","World 5", world5)
-    DungeonDome = createRegionAndConnect(world, "Dungeon Dome","World 5", world5)
-    CanvasCanyon = createRegionAndConnect(world, "Canvas Canyon","World 5", world5)
+    ColdCourse = createRegionAndConnect(world, "Cold Course","World 5 - Stage 1", world5)
+    DungeonDome = createRegionAndConnect(world, "Dungeon Dome","World 5 - Stage 2", world5)
+    CanvasCanyon = createRegionAndConnect(world, "Canvas Canyon","World 5 - Stage 3", world5)
 
-    CollapseCastle = createRegionAndConnect(world, "Collapse Castle","World 6", world6)
-    VolatileVolcano = createRegionAndConnect(world, "Volatile Volcano","World 6", world6)
-    SilentSeabed = createRegionAndConnect(world, "Silent Seabed","World 6", world6)
+    CollapseCastle = createRegionAndConnect(world, "Collapse Castle","World 6 - Stage 1", world6)
+    VolatileVolcano = createRegionAndConnect(world, "Volatile Volcano","World 6 - Stage 2", world6)
+    SilentSeabed = createRegionAndConnect(world, "Silent Seabed","World 6 - Stage 3", world6)
 
-    FrozenFantasy = createRegionAndConnect(world, "Frozen Fantasy","World 7", world7)
-    MadMechanism = createRegionAndConnect(world, "Mad Mechanism","World 7", world7)
-    SpectacleSpace = createRegionAndConnect(world, "Spectacle Space","World 7", world7)
+    FrozenFantasy = createRegionAndConnect(world, "Frozen Fantasy","World 7 - Stage 1", world7)
+    MadMechanism = createRegionAndConnect(world, "Mad Mechanism","World 7 - Stage 2", world7)
+    SpectacleSpace = createRegionAndConnect(world, "Spectacle Space","World 7 - Stage 3", world7)
 
-    TheWorldOfDrawcia = createRegionAndConnect(world, "The World of Drawcia","World 8", world8)
+    TheWorldOfDrawcia = createRegionAndConnect(world, "The World of Drawcia","World 8 - Stage 1", world8)
 
 
 def createRegion(world: "CanvasCurseWorld", name: str) -> Region:

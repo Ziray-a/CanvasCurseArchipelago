@@ -63,7 +63,7 @@ MainStoryLocations = {
     "Ravine Road - Medal 3": LocData(9, "Ravine Road"),
 
     "Ghost Grounds - Medal 1": LocData(10, "Ghost Grounds"),
-    "Ghost Grounds - Medal 2": LocData(1, "Ghost Grounds"),
+    "Ghost Grounds - Medal 2": LocData(11, "Ghost Grounds"),
     "Ghost Grounds - Medal 3": LocData(12, "Ghost Grounds"),
 
     "Growth Grasses - Medal 1": LocData(13, "Growth Grasses"),
@@ -91,7 +91,7 @@ MainStoryLocations = {
     "Machine Mansion - Medal 3": LocData(30, "Machine Mansion"),
 
     "Dreamy Darkness - Medal 1": LocData(31, "Dreamy Darkness"),
-    "Dreamy Darkness - Medal 2": LocData(22, "Dreamy Darkness"),
+    "Dreamy Darkness - Medal 2": LocData(32, "Dreamy Darkness"),
     "Dreamy Darkness - Medal 3": LocData(33, "Dreamy Darkness"),
 
     "Paletto Polis - Medal 1": LocData(34, "Paletto Polis"),
