@@ -33,12 +33,11 @@ class KirbyCanvasCurseClient(BizHawkClient):
 
     async def validate_rom(self, ctx: "BizHawkClientContext") -> bool:
         try:
-            # Check ROM name/patch version
             rom_name = ((await bizhawk.read(ctx.bizhawk_ctx, [(0x0, 11, "ROM")]))[0]).decode("ascii")
             if rom_name != "TOUCH!KIRBY":
                 return False  
         except bizhawk.RequestFailedError:
-            return False  # Not able to get a response, say no for now
+            return False 
 
         ctx.game = self.game
         ctx.items_handling = 0b011
@@ -49,7 +48,7 @@ class KirbyCanvasCurseClient(BizHawkClient):
         return True
 
 
-#there is an off-by-one issue im to lazy to fix
+
     async def game_watcher(self, ctx: "BizHawkClientContext") -> None:
         try:
             save_block_start = 0x0DA300

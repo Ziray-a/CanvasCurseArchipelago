@@ -18,7 +18,6 @@ from .Rules import set_rules
 class KirbyCanvasCurseWeb(WebWorld):
     
     
-    # You shouldnt have to change much here except the name at the bottom!
     tutorials = [Tutorial(
         "Multiworld Setup Guide",
         "A guide to setting up DS Kirby: Canvas Curse for Archipelago. "
@@ -55,28 +54,18 @@ class CanvasCurseWorld(World):
     web = KirbyCanvasCurseWeb()
     settings: typing.ClassVar[KCCSettings]
 
-    # There are other built in variables for AP. You can look at other worlds to see your options
-    # Like PLEASE look at the various worlds. Its so helpful. Find one you like and you can duplicate a bunch of it
-
-    # This is where you put stuff that need to be done RIGHT away. Typically you can just leave it alone but it can be useful to pop some things here as needed
     def __init__(self, multiworld: "MultiWorld", player: int):
         super().__init__(multiworld, player)
 
   
-
-    # Regions are the different locations in your world. So like Undead Burgh in dark souls or Pacifilog Town in pokemon
-    # They dont have to match your game, they can be whatever you need them to be for organization
     def create_regions(self):
-        # This function comes from your Regions.py and dont worry that it matches the function that its in
         create_regions(self)
 
 
     def create_items(self):
         self.multiworld.itempool += createItemPool(self)
 
-    # This is just a helper function for turning names into Items. You could do some other stuff here as well
-    # ahit does similar if you want another look and bomb rush cyberfunk does it in a slightly different way by turning it into a specific item for that game
-    # Again hopefully I do a better job of explaining the Items.py file
+
     def create_item(self, name: str) -> Item:
         return create_item(self, name)
     
@@ -99,7 +88,7 @@ class CanvasCurseWorld(World):
         except Exception:
             raise
     
-    # These are used by AP to add and remove items from the player. You can probably just leave them alone
+
     def collect(self, state: "CollectionState", item: "Item") -> bool:
         return super().collect(state, item)
     

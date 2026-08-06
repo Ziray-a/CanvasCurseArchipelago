@@ -3,8 +3,7 @@ from dataclasses import dataclass
 from worlds.AutoWorld import PerGameCommonOptions
 from Options import Choice, OptionGroup, Toggle, Range
 
-# If youve ever gone to an options page and seen how sometimes options are grouped
-# This is that
+
 def createOptionGroups() -> List[OptionGroup]:
     option_group_list: List[OptionGroup] = []
     for name, options in ap_skeleton_option_groups.items():
@@ -43,8 +42,7 @@ class WorldOptions(PerGameCommonOptions):
     TrapChance:                 TrapChance
     LosePowerup: LosePowerupTrapWeight
 
-# This is where you organize your options
-# Its entirely up to you how you want to organize it
+
 ap_skeleton_option_groups: Dict[str, List[Any]] = {
     "Trap Options": [TrapChance, LosePowerupTrapWeight]
 }

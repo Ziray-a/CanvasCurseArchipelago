@@ -44,6 +44,7 @@ def write_tokens(
     #world: "CanvasCurseWorld",
     patch: TinyPatch
 ) -> None:
+    #counter as in this counts up, here we put NOPs into the bytes counting the world counter up uppon boss clear
     world_clear_counter_addr = 0x505fe   # 2 bytes 
     patch.write_token(APTokenTypes.WRITE, world_clear_counter_addr, [0x46, 0xc0])
     patch.write_file("token_data.bin", patch.get_token_binary())
