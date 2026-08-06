@@ -57,6 +57,8 @@ def getMainItems(world: "CanvasCurseWorld"):
 MainItems = {
     # Progression items
     "Progressive World Unlock": ItemData(1001,ItemClassification.progression, 7),
+    #Medals are more than existing locations, reason being that you can get a total of 250 medals in the game
+    #this is supposed to help unlocking health. Be advised that solo archipelagos do not profit from this since there are only 63 locations default
     "Medal": ItemData(1002,ItemClassification.useful,250)
 
 }

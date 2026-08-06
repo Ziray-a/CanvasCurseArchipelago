@@ -20,6 +20,8 @@ def create_regions(world: "CanvasCurseWorld"):
     world7 = createRegionAndConnect(world,"Wonder Lilane - Kirby","World 7",world6)
     world8 = createRegionAndConnect(world,"The World of Drawcia - Kirby","World 8",world7)
 
+    #Using Variables in case those Regions are going to be used in the future
+
     PlantPlain = createRegionAndConnect(world,"Plant Plain", "World 1 - Stage 1", world1)
     TinyTown = createRegionAndConnect(world,"Tiny Town","World 1 - Stage 2", world1)
     RavineRoad = createRegionAndConnect(world,"Ravine Road","World 1 - Stage 3", world1)

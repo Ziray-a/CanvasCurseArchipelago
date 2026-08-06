@@ -18,6 +18,7 @@ def get_total_locations(world: "CanvasCurseWorld") -> int:
 
     return total
 
+
 def get_location_names() -> Dict[str, int]:
 
     names = {name: data.ap_code for name, data in locationTable.items()}
@@ -25,11 +26,14 @@ def get_location_names() -> Dict[str, int]:
     return names
 
 
+
+#Returns true for now, since there is no conditional locations yet
 def is_valid_location(world: "CanvasCurseWorld", name) -> bool:
     
     return True
 
 
+# Main story locations (Medals only for now, might need to segment this further)
 MainStoryLocations = {
 
     "Plant Plain - Medal 1": LocData(1, "Plant Plain"),
