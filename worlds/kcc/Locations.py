@@ -121,9 +121,35 @@ MainStoryLocations = {
     "Spectacle Space - Medal 3": LocData(63, "Spectacle Space"),
 
     "The World of Drawcia - Medal 1": LocData(64, "The World of Drawcia"),
-    "The World of Drawcia - Medal 2": LocData(65, "The World of Drawcia"),
+    "The World of Drawcia - Medal 2": LocData(65, "The World of Drawcia")
 }
 
+MedalExchangeLocations = {
+    "Medal Exchange - Song 1 (3 cost)": LocData(101, "Medal Exchange"),
+    "Medal Exchange - Song 2 (3 cost)": LocData(102, "Medal Exchange"),
+    "Medal Exchange - Song 3 (3 cost)": LocData(103, "Medal Exchange"),
+    "Medal Exchange - Zebra Line (6 cost)": LocData(104, "Medal Exchange"),
+    "Medal Exchange - Bead Line (6 cost)": LocData(105, "Medal Exchange"),
+    "Medal Exchange - Tropic Line (6 cost)": LocData(106, "Medal Exchange"),
+    "Medal Exchange - Life Boost 1 (7 cost)": LocData(107, "Medal Exchange"),
+    "Medal Exchange - Life Boost 2 (12 cost)": LocData(116, "Medal Exchange"),
+    "Medal Exchange - Life Boost 3 (14 cost)": LocData(117, "Medal Exchange"),
+    "Medal Exchange - Dedede Ball (20 cost)": LocData(118, "Medal Exchange"),
+    "Medal Exchange - Meta Knight Ball (25 cost)": LocData(119, "Medal Exchange"),
+    "Medal Exchange - Hidden Song (50 cost)": LocData(120, "Medal Exchange")
+    
+}
+
+MedalExchangeCoursesLocations = {
+    "Medal Exchange - Course 1 (9 cost)": LocData(108, "Medal Exchange"),
+    "Medal Exchange - Course 2 (9 cost)": LocData(109, "Medal Exchange"),
+    "Medal Exchange - Course 3 (9 cost)": LocData(110, "Medal Exchange"),
+    "Medal Exchange - Course 4 (9 cost)": LocData(111, "Medal Exchange"),
+    "Medal Exchange - Course 5 (10 cost)": LocData(112, "Medal Exchange"),
+    "Medal Exchange - Course 6 (10 cost)": LocData(113, "Medal Exchange"),
+    "Medal Exchange - Course 7 (10 cost)": LocData(114, "Medal Exchange"),
+    "Medal Exchange - Course 8 (10 cost)": LocData(115, "Medal Exchange")
+}
 
 locationTable = {
     **MainStoryLocations,

@@ -5,11 +5,11 @@ from Options import Choice, OptionGroup, Toggle, Range
 
 
 def createOptionGroups() -> List[OptionGroup]:
-    option_group_list: List[OptionGroup] = []
-    for name, options in ap_skeleton_option_groups.items():
-        option_group_list.append(OptionGroup(name=name, options=options))
+    OptionGroupList: List[OptionGroup] = []
+    for name, options in OptionGroups.items():
+        OptionGroupList.append(OptionGroup(name=name, options=options))
 
-    return option_group_list
+    return OptionGroupList
 
 
 class TrapChance(Range):
@@ -22,6 +22,35 @@ class TrapChance(Range):
     range_start = 0
     range_end = 100
     default = 0
+
+
+class IncludeRainbowRun(bool):
+    '''
+    Includes Medals Locations from the Rainbow Run 
+    Medals are already Included, due to the Game needing more than just the Medals from Story mode to get everything inside the Medal Exchange
+    '''
+    display_name = "Include Rainbow Run"
+    default = False
+
+class RainbowRunDifficulty(Range):
+    '''
+    Determines what Medals are counted as in-logic.
+    Use this if you are not confident you can get 3 Medals in every Rainbow Run Challenge 
+    '''
+    display_name = "Rainbow Run Difficulty"
+    range_start = 1
+    range_end = 3
+    default = 3
+
+
+class IncludeMedalExchange(bool):
+    '''
+    WARNING: THIS WILL NOT WORK IF YOU ARE IN SINGLE-PLAYER ARCHIPELAGO SINCE THERE ARE NOT ENOUGH LOCATIONS (yet)
+    This Randomizes the Medal exchange Items as well.
+    Adds trash such as Songs and Lines Inside the Medal exchange, but adds Checks to the Medal-Shop unlocks
+    '''
+    display_name = "Include Medal Exchange"
+    default= False
 
 
 class LosePowerupTrapWeight(Range):
@@ -42,7 +71,6 @@ class WorldOptions(PerGameCommonOptions):
     TrapChance:                 TrapChance
     LosePowerup: LosePowerupTrapWeight
 
-
-ap_skeleton_option_groups: Dict[str, List[Any]] = {
-    "Trap Options": [TrapChance, LosePowerupTrapWeight]
+OptionGroups: Dict[str, List[Any]] = {
+    "Trap Options": [TrapChance, LosePowerupTrapWeight, IncludeRainbowRun]
 }
